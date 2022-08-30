@@ -1,3 +1,28 @@
+
+/**
+ * Convert a vec2 to a complex string
+ * @param {float} real Real component
+ * @param {float} imag Imaginary component
+ * @param {int} k Decimal precision
+ */
+ function complexToStr(real, imag, k) {
+    if (k === undefined) {
+        k = 2;
+    }
+    s = "";
+    const v = [real, imag];
+    for (let i = 0; i < 2; i++) {
+        s += v[i].toFixed(k);
+        if (i < v.length-1) {
+            s += " + ";
+        }
+        else if (i == 1) {
+            s += "i";
+        }
+    }
+    return s;
+}
+
 class JuliaSet {
     /**
      * Construct the object and store canvas information
@@ -12,7 +37,35 @@ class JuliaSet {
         this.ctx = this.canvas.getContext("2d"); //For drawing
         //Need this to disable that annoying menu that pops up on right click
         this.canvas.addEventListener("contextmenu", function(e){ e.stopPropagation(); e.preventDefault(); return false; }); 
+        
+        // Initialize variables
+        this.CRe = -1;
+        this.CIm = 0;
+        this.MaxIters = 30;
+        this.uEscape = 4;
+        
+        // Setup menu
+        this.setupMenu();
     }
+
+    setupMenu() {
+        const that = this;
+        this.C = complexToStr(this.CRe, this.CIm);
+        let menu = new dat.GUI();
+        this.menu = menu;
+        menu.add(this, 'C').listen().onChange(
+            function(s) {
+                const v = s.split("+");
+                that.CRe = parseFloat(v[0]);
+                console.log(v[1].substr(v[1].length-1));
+                that.CIm = parseFloat(v[1].substr(0, v[1].length-1));
+            }
+        )
+        menu.add(this, 'MaxIters', 1, 100);
+        menu.add(this, 'uEscape', 0);
+        menu.add(this, 'repaint');
+    }
+
 
     /**
      * Draw a pixel at a particular position of the canvas 
@@ -31,17 +84,19 @@ class JuliaSet {
      * Method to paint the Julia set
      */
     repaint() {
+        let tic = (new Date()).getTime();
+
         const W = this.canvas.width;
         const H = this.canvas.height;
         this.ctx.clearRect(0, 0, W, H);
         for (let x = 0; x < W; x++) {
             for (let y = 0; y < W; y++) {
-                let real = 2*(x/W - 0.5);
-                let imag = 2*(y/H - 0.5);
-
                 // TODO: Replace this with code that does a Julia set iteration
                 this.drawPixel(x, y, 255*x/W, 255*y/H, 0);
             }
         }
+        let toc = (new Date()).getTime();
+        const ptime = document.getElementById("time");
+        ptime.innerHTML = (toc-tic) + " milliseconds elapsed (" + (Math.round(10000/(toc-tic))/10) + "fps)";
     }
 }

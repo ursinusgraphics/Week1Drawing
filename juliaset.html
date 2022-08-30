@@ -2,31 +2,28 @@
 <head>
 <!-- This is how you include external scripts in Javascript !-->
 <script src= "juliaset.js"></script>
+<script src= "dat.gui.min.js"></script>
 <style>
     div#canvasarea {
-    width: 71%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     float: left;
     }
 </style>
 </head>
 <body>
+
     <p id = "time"></p>
-<div id="canvasArea">
-    <canvas id = "juliaCanvas" style="border:1px solid #000000;">
-    </canvas>
-</div>
+    <div id="canvasArea">
+        <canvas id = "juliaCanvas" style="border:1px solid #000000;">
+        </canvas>
+    </div>
 
 
-
-<script>
-    const canvas = new JuliaSet("canvasArea", "juliaCanvas");
-    const ptime = document.getElementById("time");
-    let tic = (new Date()).getTime();
-    canvas.repaint();
-    let toc = (new Date()).getTime();
-    ptime.innerHTML = (toc-tic) + " milliseconds elapsed (" + (Math.round(10000/(toc-tic))/10) + "fps)";
-</script>
+    <script>
+        const canvas = new JuliaSet("canvasArea", "juliaCanvas");
+        canvas.repaint();
+    </script>
 
 
 </body>
