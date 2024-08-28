@@ -24,7 +24,6 @@ class RasterImage {
     }
 
     setupMenu() {
-        const that = this;
         let menu = new dat.GUI();
         this.menu = menu;
         menu.add(this, 'dx', -this.canvas.width, this.canvas.width)
@@ -69,13 +68,13 @@ class RasterImage {
     /**
      * Fill in a disc using the drawPixel method
      * 
-     * @param {int} x x coordinate of center of disc
-     * @param {int} y y coordinate of center of disc
+     * @param {int} cx x coordinate of center of disc
+     * @param {int} cy y coordinate of center of disc
      * @param {int} w Width of rectangle
      * @param {int} h Height of rectangle
      * @param {list of [float, float, float]} color Red/green/blue values in [0, 255]
      */
-    fillCircle(x, y, r, color) {
+    fillCircle(cx, cy, r, color) {
         // TODO: Fill this in
     }
 
