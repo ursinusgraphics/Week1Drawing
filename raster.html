@@ -1,7 +1,7 @@
 <html>
 <head>
 <!-- This is how you include external scripts in Javascript !-->
-<script src= "juliaset.js"></script>
+<script src= "raster.js"></script>
 <script src= "dat.gui.min.js"></script>
 <style>
     div#canvasarea {
@@ -15,13 +15,13 @@
 
     <p id = "time"></p>
     <div id="canvasArea">
-        <canvas id = "juliaCanvas" style="border:1px solid #000000;">
+        <canvas id = "rasterCanvas" style="border:1px solid #000000;">
         </canvas>
     </div>
 
 
     <script>
-        const canvas = new JuliaSet("canvasArea", "juliaCanvas");
+        const canvas = new RasterImage("canvasArea", "rasterCanvas");
         canvas.repaint();
     </script>
 
