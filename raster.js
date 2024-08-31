@@ -64,6 +64,16 @@ class RasterImage {
         // TODO: Fill this in
     }
 
+    /**
+     * Draw a line segment from point a to point b
+     * 
+     * @param {glMatrix.vec2} a First point
+     * @param {glMatrix.vec2} b Second point
+     */
+    drawLine(a, b) {
+        // TODO: Fill this in
+    }
+
 
     /**
      * Fill in a disc using the drawPixel method
@@ -78,6 +88,31 @@ class RasterImage {
         // TODO: Fill this in
     }
 
+    /**
+     * Fill in a triangle with a solid color
+     * 
+     * @param {glMatrix.vec2} a First point
+     * @param {glMatrix.vec2} b Second point
+     * @param {glMatrix.vec2} c Third point
+     * @param {list of [float, float, float]} color Red/green/blue values in [0, 255]
+     */
+    fillTriangle(a, b, c, color) {
+        // TODO: Fill this in
+    }
+
+    /**
+     * Shade in a triangle using Barycentric interpolation
+     * 
+     * @param {glMatrix.vec2} a First point
+     * @param {list of [float, float, float]} ca First point red/green/blue values in [0, 255] 
+     * @param {glMatrix.vec2} b Second point
+     * @param {list of [float, float, float]} cb Second point red/green/blue values in [0, 255] 
+     * @param {glMatrix.vec2} c Third point
+     * @param {list of [float, float, float]} cc Third point red/green/blue values in [0, 255] 
+     */
+    shadeTriangle(a, ca, b, cb, c, cc) {
+        // TODO: Fill this in
+    }
 
     /**
      * Method to paint a picture!
